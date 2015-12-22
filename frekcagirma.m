@@ -1,1 +1,1 @@
-f=frek('b',0)
+f=frek('Sus') 
