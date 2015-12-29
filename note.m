@@ -1,9 +1,20 @@
-function [xx,tt]=note(frekans,vurus) 
+function [topla,t]=note(frekans,vurus) 
 Fs=8192;
-tt=0:1/Fs:((0.25-(1/Fs))/2); 
-zz=0;
-   xx=sin(2*pi*frekans*tt); 
-if length(xx)==length(zz)    
-       zz=[linspace(0,1.5,Fs*vurus*(2/8)),linspace(1.5,1,Fs*vurus*(1/8)),linspace(1,1,Fs*vurus*(4/8)),linspace(1,0,Fs*vurus*(1/8))];
+topla=0;
+a=1;
+harmonik={1 0.8 0.4 0.1};
+t=0:1/Fs:vurus-1/Fs;
+for h=1:length(harmonik)
+   x=harmonik{h}*sin(2*pi*frekans*t*a); 
+   topla=topla+x;
+   a=a+1;
 end
+   z1=linspace(0,1.5,length(t)/4);
+   z2=linspace(1.5,1,length(t)/8);
+   z3=linspace(1,1,length(t)/2);
+   z4=linspace(1,0,length(t)/8);
+   zarf=[z1 z2 z3 z4];
+   x=x+zarf;
+   
+   
 end
